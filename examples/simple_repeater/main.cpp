@@ -1,5 +1,6 @@
 #include <Arduino.h>   // needed for PlatformIO
 #include <Mesh.h>
+#include <helpers/NastySolar.h>
 
 #include "MyMesh.h"
 
@@ -32,6 +33,11 @@ void setup() {
   delay(1000);
 
   board.begin();
+
+  #ifdef NASTY_SOLAR
+  nastySolarBootCheck();
+  #endif
+
 
 #if defined(MESH_DEBUG) && defined(NRF52_PLATFORM)
   // give some extra time for serial to settle so
